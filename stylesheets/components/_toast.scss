@@ -1,0 +1,18 @@
+
+
+/// @access public
+/// @param {Map} $map
+/// @prop {String} z-index (10) - component z index
+/// @content css
+/// @example
+///   paper-toast()
+
+@mixin paper-toast($map:()){
+  $_z-index:map-get-default($map,z-index,10);
+
+  paper-toast{
+    z-index:$_z-index;
+    @content;
+  }
+
+}

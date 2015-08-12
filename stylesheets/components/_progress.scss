@@ -1,0 +1,43 @@
+
+/// @access private
+/// @param {Map} $map
+@mixin _paper-progress($map:()){
+  $_background:map-get-default($map,default,#eee);
+  $_active:map-get-default($map,active,#F44336);
+  $_secondary:map-get-default($map,secondary,#FF8A80);
+  $_display:map-get-default($map,display,block);
+  $_width:map-get-default($map,width,100%);
+
+  width:$_width;
+  display:$_display;
+  &>.paper-progress{
+    background-color:$_background !important;
+    &>#secondaryProgress{
+      background-color: $_secondary !important;
+    }
+    &>#activeProgress{
+      background-color: $_active !important;
+    }
+  }
+}
+
+/// @access public
+/// @require {Mixin} _paper-progress - private mixin
+/// @require {Mixin} element-tag
+/// @param {String} $class - class scope
+/// @param {Map} $map
+/// @param {String} display (block) - component display property
+/// @param {String} width (100%) - component width
+/// @prop {String} default (#eee) - default background color
+/// @prop {String} active (#f44336) - active background color
+/// @prop {String} secondary(#ff8a80) - secondary background color
+/// @content css
+/// @example
+///   paper-progress($map:(active:#009688,secondary:#A7FFEB))
+@mixin paper-progress($class:null,$map:()){
+  $tag:paper-progress;
+  @include element-tag($tag:$tag,$class:$class){
+    @include _paper-progress($map);
+    @content;
+  }
+}

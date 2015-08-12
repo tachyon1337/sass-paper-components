@@ -1,0 +1,19 @@
+
+/// @access public
+/// @param {String} $class - class scope
+/// @content css
+/// @example
+///   @include paper-fab($class:my-class){
+///      @extend .md.red;
+///   }
+@mixin paper-fab($class:null){
+  @if $class !=null{
+    paper-fab.#{$class}.paper-fab-0{
+      @content;
+    }
+  }@else{
+    paper-fab.paper-fab-0{
+      @content;
+    }
+  }
+}
